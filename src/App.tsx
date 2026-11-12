@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { Blessing } from './components/Blessing';
 import { FamilyBlessings } from './components/FamilyBlessings';
-import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Intro } from './components/Intro';
 import { Menu } from './components/Menu';
@@ -31,7 +30,7 @@ export default function App() {
         <FamilyBlessings />
         <Wishes />
       </main>
-      <Footer />
+      
       <SaveTheDateModal open={dateOpen} onClose={() => setDateOpen(false)} />
       <Menu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
