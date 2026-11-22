@@ -8,7 +8,8 @@ type Props = { open: boolean; onClose: () => void };
 const DOW = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
 function MonthGrid() {
-  const { year, month, weddingDay } = EVENT.calendar;
+  const { year, month, marks } = EVENT.calendar;
+  const marked = new Set(marks.map((m) => m.day));
   const lead = new Date(year, month, 1).getDay();
   const days = new Date(year, month + 1, 0).getDate();
   return (
@@ -24,13 +25,13 @@ function MonthGrid() {
       {Array.from({ length: days }, (_, i) => {
         const d = i + 1;
         const dow = (lead + i) % 7;
-        const cls = ['d', dow === 0 && 'sun', d === weddingDay && 'wed']
+        const cls = ['d', dow === 0 && 'sun', marked.has(d) && 'wed']
           .filter(Boolean)
           .join(' ');
         return (
           <span key={d} className={cls}>
             {d}
-            {d === weddingDay && <HeartSmall />}
+            {marked.has(d) && <HeartSmall />}
           </span>
         );
       })}
@@ -72,15 +73,17 @@ export function SaveTheDateModal({ open, onClose }: Props) {
           </div>
           <MonthGrid />
           <ul className="legend">
-            <li>
-              <i />
-              Sat {EVENT.calendar.weddingDay} · {EVENT.ceremony.title} &amp; reception
-            </li>
+            {EVENT.calendar.marks.map((m) => (
+              <li key={m.day}>
+                <i />
+                {m.label}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="modal__info">
           <p className="eyebrow">Save the date</p>
-          <h2 id="cal-title">{EVENT.dateLong}</h2>
+          <h2 id="cal-title">{EVENT.ceremony.dateLong}</h2>
           <p className="cd">
             <b>{cd.n}</b>
             <span>{cd.label}</span>
@@ -94,7 +97,7 @@ export function SaveTheDateModal({ open, onClose }: Props) {
             ))}
           </ul>
           <p className="where">
-            {EVENT.venue}, {EVENT.town}, {EVENT.region}
+            {EVENT.ceremony.town} &amp; {EVENT.reception.town}, {EVENT.region}
           </p>
           <div className="modal__acts">
             <a className="btn" href={EVENT.calendarUrl} target="_blank" rel="noopener">

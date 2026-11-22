@@ -1,36 +1,38 @@
 import { IMG } from '../assets';
-import { COUPLE, EVENT } from '../content';
+import { COUPLE, EVENT, INVITE } from '../content';
 
 export function Intro() {
+  const { ceremony, reception } = EVENT;
   return (
     <section className="intro" aria-labelledby="intro-h">
       <div className="wrap intro__grid">
         <img
           className="intro__photo"
-          src={IMG.window}
-          alt={`${COUPLE.first} and ${COUPLE.second} framed in a window, black and white`}
+          loading="lazy"
+          decoding="async"
+          src={IMG.backtoback}
+          alt={`${COUPLE.first} and ${COUPLE.second} standing back to back under a stone arch`}
         />
         <div className="intro__body">
           <h2 className="h2" id="intro-h">
             {COUPLE.full} Are Getting Married.
           </h2>
           <p className="small">
-            Together with our families, we joyfully invite you to join us at {EVENT.venue} in {EVENT.town} as we 
-            celebrate our wedding day, surrounded by love, faith, and the blessings of those closest to us.
+            With the grace of the Divine and the heavenly blessings of {INVITE.graceOf}, {INVITE.hosts} request
+            the pleasure of your company at the marriage of their beloved son {INVITE.groomFull} with{' '}
+            {INVITE.brideFull}, daughter of {INVITE.brideParents}
           </p>
           <p className="intro__facts">
-            <span>
-              <b>{EVENT.dateLong}</b>
-            </span>
-            <span>
-              {EVENT.ceremony.title} at {EVENT.ceremony.time}
-            </span>
-            <span>Reception at {EVENT.reception.time}</span>
+            {[ceremony, reception].map((e) => (
+              <span key={e.title} style={{ flexBasis: '100%' }}>
+                <b>{e.dateLong}</b> · {e.title}, {e.time}, {e.place}, {e.town}
+              </span>
+            ))}
           </p>
         </div>
         <div className="pair" aria-hidden="true">
-          <img src={IMG.treehead} alt="" />
-          <img src={IMG.wlead} alt="" style={{ objectPosition: '50% 35%' }} />
+          <img loading="lazy" decoding="async" src={IMG.sky} alt="" style={{ objectPosition: '50% 65%' }} />
+          <img loading="lazy" decoding="async" src={IMG.laugh} alt="" style={{ objectPosition: '50% 40%' }} />
         </div>
       </div>
     </section>

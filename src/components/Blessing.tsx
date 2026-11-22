@@ -6,13 +6,14 @@ export function Blessing() {
     <section id="blessing" aria-labelledby="blessing-h">
       <div className="wrap">
         <div className="banner">
-          <img src={IMG.beach} alt={`${COUPLE.first} and ${COUPLE.second} walking along the shore`} />
+          <img loading="lazy" decoding="async" src={IMG.dusk} alt={`${COUPLE.first} and ${COUPLE.second} embracing beside a tree at dusk`} />
           <a className="badge" href="#wishes" aria-label="Send your wishes">
             <svg className="ring" viewBox="0 0 120 120" aria-hidden="true">
               <defs>
                 <path id="ring" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
               </defs>
-              <text>
+              {/* path circumference is 2π·44 ≈ 276; textLength keeps the longer names from overlapping */}
+              <text textLength="276" lengthAdjust="spacing">
                 <textPath href="#ring">Send your wishes · {COUPLE.full} ·</textPath>
               </text>
             </svg>
