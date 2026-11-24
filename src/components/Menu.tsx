@@ -27,7 +27,7 @@ export function Menu({ open, onClose }: Props) {
         </nav>
       </div>
       <div className="wrap menu__foot">
-        {EVENT.dateLong} · {EVENT.venue}, {EVENT.town}
+        {EVENT.ceremony.dateLong} · {EVENT.ceremony.place}, {EVENT.ceremony.town}
       </div>
     </div>
   );
