@@ -103,9 +103,6 @@ export function SaveTheDateModal({ open, onClose }: Props) {
             <a className="btn" href={EVENT.calendarUrl} target="_blank" rel="noopener">
               Add to calendar
             </a>
-            <a className="btn btn--ghost" href="#wishes" onClick={onClose}>
-              Send wishes
-            </a>
           </div>
         </div>
       </div>

@@ -24,9 +24,6 @@ export function StickyBar({ heroRef, onOpenMenu }: Props) {
           {COUPLE.monogram}
         </a>
         <div className="bar__right">
-          <a className="btn" href="#wishes">
-            Send Wishes
-          </a>
           <button className="nav__menu" type="button" onClick={onOpenMenu}>
             Menu
           </button>
