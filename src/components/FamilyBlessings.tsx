@@ -1,50 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
-import { IMG, type ImgKey } from '../assets';
+import { useState } from 'react';
+import { IMG } from '../assets';
 import { FAMILY_BLESSINGS } from '../content';
-import type { StoredWish } from '../lib/wishes';
 import { ChevronLeft, ChevronRight } from './icons';
 
-type Card = { id: string; title: string; text: string; from: string; img: ImgKey; pos: string };
-
-/** Photos cycled across guest wishes so neighbouring cards look different. */
-const GUEST_IMGS: { img: ImgKey; pos: string }[] = [
-  { img: 'sofa', pos: '50% 45%' },
-  { img: 'backtoback', pos: '50% 50%' },
-  { img: 'windowseat', pos: '50% 60%' },
-  { img: 'laugh', pos: '50% 45%' },
-  { img: 'sky', pos: '50% 65%' },
-  { img: 'courtyard', pos: '50% 50%' },
-];
-
-const toCard = (w: StoredWish, n: number): Card => ({
-  id: w.id,
-  title: `${w.name.split(/\s+/)[0]}’s wish`,
-  text: w.message,
-  from: w.name,
-  ...GUEST_IMGS[n % GUEST_IMGS.length],
-});
-
-type Props = {
-  /** Guests' wishes, newest first */
-  guestWishes: StoredWish[];
-  /** Id of a wish this visitor just sent; the carousel jumps to it */
-  focusId: string | null;
-};
-
-/** Carousel of blessings: the families' words first, then every guest's wish. */
-export function FamilyBlessings({ guestWishes, focusId }: Props) {
-  const items = useMemo<Card[]>(
-    () => [...FAMILY_BLESSINGS.map((b, n) => ({ ...b, id: `family-${n}` })), ...guestWishes.map(toCard)],
-    [guestWishes],
-  );
+/** Carousel of blessings from the families. */
+export function FamilyBlessings() {
+  const items = FAMILY_BLESSINGS.map((b, n) => ({ ...b, id: `family-${n}` }));
   const N = items.length;
   const [i, setI] = useState(0);
-
-  useEffect(() => {
-    if (!focusId) return;
-    const at = items.findIndex((c) => c.id === focusId);
-    if (at >= 0) setI(at);
-  }, [focusId, items]);
 
   const cur = Math.min(i, N - 1);
   const prev = () => setI((v) => (Math.min(v, N - 1) + N - 1) % N);

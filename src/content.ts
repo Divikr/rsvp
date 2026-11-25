@@ -123,7 +123,7 @@ export const FAMILY_BLESSINGS: FamilyBlessing[] = [
   { title: 'May your home be full of peace', text: 'May your home be full of peace, your table full of laughter, and your hearts full of patience for each other.', from: 'Rajitha & Ganesh, Sharath’s parents', img: 'sofa', pos: '50% 45%' },
   { title: 'Welcome to our family', text: 'We hoped for the right person to walk beside our daughter. Sharath, we are so glad it is you.', from: 'Sheela & Venugopalan, Dhanyashree’s parents', img: 'sky', pos: '50% 65%' },
   { title: 'Love that grows', text: 'Love each other a little more every year, through every season life brings you.', from: 'Your family', img: 'windowseat', pos: '50% 60%' },
-  { title: 'Always in your corner', text: 'We’ve teased you both for years. Now we get to cheer for you, forever.', from: 'Your brothers & sisters', img: 'laugh', pos: '50% 45%' },
+  { title: 'Always in your corner', text: 'May you always find happiness in each other, strength in difficult times, and countless reasons to smile together.', from: 'Your brothers & sisters', img: 'laugh', pos: '50% 45%' },
 ];
 
 export const NAV_LINKS = [
@@ -132,5 +132,4 @@ export const NAV_LINKS = [
   { href: '#blessing', label: 'Blessing' },
   { href: '#schedule', label: 'Schedule' },
   { href: '#families', label: 'Family Blessings' },
-  { href: '#wishes', label: 'Send Wishes' },
 ];

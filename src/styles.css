@@ -5,7 +5,7 @@ body { margin: 0; padding: 0; }
 
 /* Layout: a framed invitation page. Dark photo hero with the names on the faces over a domed
    edge, then light sections in a 1120px column: intro, vows scroll, words carousel, blessing
-   banner, venue & schedule, family blessings carousel, and the wishes form.
+   banner, venue & schedule, and family blessings carousel.
    Single light look, taken from the reference. */
 :root {
   --canvas: #f6f1ee;      /* page */
@@ -15,9 +15,7 @@ body { margin: 0; padding: 0; }
   --text: #3a3d58;        /* body on canvas / paper (10:1) */
   --muted: #6c6d82;       /* small print (5.1:1 on canvas) */
   --line: rgba(22, 26, 77, .14);
-  --field: #8a8ba3;       /* input borders (3.3:1 on paper) */
   --mist: #9aa1d6;        /* periwinkle end of the navy gradient */
-  --danger: #a1342a;
   --on-dark: #ffffff;
   --shade: rgba(14, 12, 30, .36);
 
@@ -268,7 +266,7 @@ section[id], footer { scroll-margin-top: 72px; }
 
 /* ---------- venue & schedule ---------- */
 .sched { padding-block: clamp(80px, 10vw, 128px) clamp(72px, 9vw, 120px); }
-.sched .h2, .faq .h2, .rsvp-head .h2 { text-align: center; margin-inline: auto; max-width: 18ch; }
+.sched .h2, .faq .h2 { text-align: center; margin-inline: auto; max-width: 18ch; }
 .sub { text-align: center; color: var(--muted); font-size: 14px; margin: 14px auto 0; max-width: 52ch; }
 .ncards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 40px; }
 .ncard { position: relative; background: var(--paper); border-radius: var(--r); padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
@@ -302,35 +300,6 @@ section[id], footer { scroll-margin-top: 72px; }
 .fade { animation: fade .35s ease; }
 @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-/* ---------- wishes form (.rsvp) ---------- */
-.rsvp { padding-block: clamp(80px, 10vw, 128px); }
-.rsvp__grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 72px); align-items: start; margin-top: 44px; }
-.rsvp__aside { display: grid; gap: 18px; }
-.rsvp__aside img { width: 100%; max-width: 360px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r); }
-.rsvp__aside dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; font-size: 13px; }
-.rsvp__aside dt { color: var(--muted); }
-.rsvp__aside dd { margin: 0; color: var(--navy); }
-.card { background: var(--paper); border-radius: var(--r); padding: clamp(24px, 3.4vw, 40px); }
-.form { display: grid; gap: 22px; }
-.field { display: grid; gap: 8px; border: 0; padding: 0; margin: 0; min-width: 0; }
-.field > legend { padding: 0; margin-bottom: 8px; }
-.lab { font: 500 12px/1.3 var(--sans); color: var(--navy); }
-.lab small { font-weight: 400; color: var(--muted); font-size: 12px; }
-.input { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--field); border-radius: 3px; background: var(--paper); color: var(--navy); font: 400 14px/1.4 var(--sans); }
-.input::placeholder { color: var(--muted); }
-.input:hover { border-color: var(--navy); }
-.input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 1px var(--navy); }
-textarea.input { height: auto; min-height: 96px; padding: 10px 12px; resize: vertical; }
-.err { display: none; font-size: 12px; color: var(--danger); }
-.field.bad .err { display: block; }
-.field.bad .input { border-color: var(--danger); box-shadow: 0 0 0 1px var(--danger); }
-.done { display: grid; justify-items: center; text-align: center; gap: 14px; padding: 12px 0; }
-.done__mark { width: 56px; height: 56px; border-radius: 50%; background: var(--navy); color: var(--on-dark); display: grid; place-items: center; }
-.done__mark svg { width: 22px; height: 22px; }
-.done h3 { font-size: 30px; }
-.done p { max-width: 40ch; color: var(--muted); font-size: 14px; }
-.done__acts { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; justify-content: center; }
-
 /* ---------- responsive ---------- */
 @media (max-width: 980px) {
   .intro__grid { grid-template-columns: 140px minmax(0, 1fr); }
@@ -340,8 +309,6 @@ textarea.input { height: auto; min-height: 96px; padding: 10px 12px; resize: ver
   .track { grid-auto-columns: calc((100% - 16px) / 2); }
   .ncards { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .qstage { grid-template-columns: 110px minmax(0, 460px) 110px; gap: 16px; }
-  .rsvp__grid { grid-template-columns: 1fr; }
-  .rsvp__aside { grid-template-columns: 200px 1fr; align-items: end; }
 }
 @media (max-width: 640px) {
   .hero { height: max(640px, 92svh); }
@@ -373,11 +340,6 @@ textarea.input { height: auto; min-height: 96px; padding: 10px 12px; resize: ver
   .qside { display: none; }
   .qcard { grid-template-columns: 1fr; }
   .qcard img { height: 220px; object-position: 50% 30%; }
-  .rsvp__aside { grid-template-columns: 1fr; }
-  .rsvp__aside img { display: none; }
-  .done__acts { flex-direction: column; width: 100%; }
-  .done__acts .btn { width: 100%; }
-  .bar__right .btn { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
